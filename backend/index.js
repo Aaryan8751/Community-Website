@@ -8,6 +8,7 @@ const routes = require('./app/routes');
 const { errorHandler } = require('./helpers/error');
 require('colors');
 require('./helpers/dbConnection');
+require('dotenv').config();
 
 const app = express();
 const server = http.Server(app);
@@ -33,7 +34,7 @@ app.use('/', routes);
 
 // Home route
 app.get('/', (_req, res) => {
-  res.status(200).json({ message: 'Hello World Test' });
+  res.status(200).json({ message: 'Hello There!! You are at Community-website Backend' });
 });
 
 // Error handling middleware
@@ -43,10 +44,7 @@ app.use(errorHandler);
 const PORT = process.env.PORT || 3500;
 server.listen(
   PORT,
-  console.log(
-    `Server running in ${process.env.ENV || 'development'} mode on port ${PORT}`
-      .brightYellow.underline.bold
-  )
+  console.log(`Server running in ${process.env.ENV || 'development'} mode on port ${PORT}`.brightYellow.underline.bold)
 );
 
 // handle the error safely
